@@ -130,7 +130,8 @@ def _merge_bins_callback(target, source, env):
                 env.Exit(1)
 
 # Automatically run after firmware.bin is generated
-senv.AddPostAction(str(app_bin), _merge_bins_callback)
+# senv.AddPostAction(str(app_bin), _merge_bins_callback)
+senv.AddPostAction("buildprog", _merge_bins_callback)
 
 # Optional manual target: depend on the three binaries and run the same callback
 # Wrap it in a lambda so SCons can call it without (target, source, env) if needed.

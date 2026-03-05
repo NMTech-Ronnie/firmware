@@ -41,7 +41,8 @@ void _setup_gpio() {
     } else log_i("Touch IC Started");
 #endif
 
-    bruceConfig.colorInverted = 0;
+    bruceConfig.setColorInverted(1);
+    // bruceConfig.colorInverted = 1;
 }
 
 /***************************************************************************************
@@ -78,6 +79,12 @@ void _post_setup_gpio() {
     }
     tft.setTouch(calData);
 #endif
+
+    bruceConfigPins.gps_bus.rx = (gpio_num_t)GPS_SERIAL_RX;
+    bruceConfigPins.gps_bus.tx = (gpio_num_t)GPS_SERIAL_TX;
+    bruceConfigPins.gpsBaudrate = 9600;
+
+    Serial.println("GPS serial port!");
 
     // Brightness control must be initialized after tft in this case @Pirata
     pinMode(TFT_BL, OUTPUT);
